@@ -16,6 +16,6 @@ const connectToPostgres = async () =>{
     global.connection = connection;
 }
 
-connectPostgres();
+connectToPostgres();
 
 module.exports = {connectToPostgres}
