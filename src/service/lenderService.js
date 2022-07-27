@@ -1,4 +1,4 @@
-const LenderRepository = require('../database/repositories/lenderRespository');
+const LenderRepository = require('../database/repositories/lenderRepository');
 
 class LenderService{
 

@@ -5,7 +5,7 @@ const connectToPostgres = async () =>{
     if(global.connection && global.connection.state !== 'disconnected')
         return global.connection;
 
-    const isProduction = process.env.NODE_ENV === "production";
+    
 
     const config = {
         host: process.env.DB_HOST,
@@ -14,7 +14,9 @@ const connectToPostgres = async () =>{
         database: process.env.DB_DATABASE
     }
 
-    const connection = await pg.createConnection(config);
+   
+
+    const connection = await new pg.Connection(config);
     console.log("Conexão realizada com sucesso!!!");
     global.connection = connection;
 }
