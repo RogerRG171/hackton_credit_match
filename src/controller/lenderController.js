@@ -15,6 +15,11 @@ exports.getByEmail = async (req, res, next) => {
     res.status(200).send(payload);
 };
 
+exports.getByTradingName = async (req, res, next) => {
+    const payload = await new LenderService().getLenderByTradingName(req.params.trading_name);
+    res.status(200).send(payload);
+};
+
 exports.post = async (req, res, next) => {
     try{
         const payload = await new LenderService().createLender(req.body);

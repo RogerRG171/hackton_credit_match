@@ -11,7 +11,7 @@ exports.getById = async (req, res, next) => {
 };
 
 exports.getByDesiredAmount = async (req, res, next) => {
-    const payload = await new CreditProfileService().getCreditProfileByDesiredAmount(req.params.desiredAmount);
+    const payload = await new CreditProfileService().getCreditProfileByDesiredAmount(req.params.desired_amount);
     res.status(200).send(payload);
 };
 

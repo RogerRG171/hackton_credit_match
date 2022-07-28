@@ -1,4 +1,4 @@
-const AssetRepository = require('../database/repositories/assetRespository');
+const AssetRepository = require('../database/repositories/assetRepository');
 
 class AssetService{
 
@@ -15,7 +15,7 @@ class AssetService{
     }
 
     async getAssetByType(type, creditProfileId){
-        return this.repository.findByEmail(type, creditProfileId);
+        return this.repository.findByType(type, creditProfileId);
     }
 
     async getAssetByTotalEstimateValue(totalEstimateValue, creditProfileId){

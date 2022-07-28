@@ -1,7 +1,7 @@
 const AssetService = require('../service/assetService');
 
 exports.get = async (req, res, next) => {
-    const payload = await new AssetService().getAllAssetsBycreditProfileId(req.params.creditProfileId);
+    const payload = await new AssetService().getAllAssetsBycreditProfileId(req.params.credit_profile_id);
     res.status(200).send(payload);
 };
 
@@ -16,18 +16,18 @@ exports.getByType = async (req, res, next) => {
 };
 
 exports.getByTotalEstimateValue = async (req, res, next) => {
-    const payload = await new AssetService().getAssetByTotalEstimateValue(req.params.totalEstimateValue, req.params.creditProfileId);
+    const payload = await new AssetService().getAssetByTotalEstimateValue(req.params.total_estimate_value, req.params.credit_profile_id);
     res.status(200).send(payload);
 };
 
 exports.getByMaxTotalEstimateValue = async (req, res, next) => {
-    const payload = await new AssetService().getAssetByTotalEstimateValue(req.params.totalEstimateValue, req.params.creditProfileId);
+    const payload = await new AssetService().getAssetByTotalEstimateValue(req.params.total_estimate_value, req.params.credit_profile_id);
     res.status(200).send(payload);
 };
 
 exports.post = async (req, res, next) => {
     try{
-        const payload = await new AssetService().createAsset(req.body, req.params.creditProfileId);
+        const payload = await new AssetService().createAsset(req.body, req.params.credit_profile_id);
         res.status(201).send(payload);
     }catch(error){
         res.status(400).send({

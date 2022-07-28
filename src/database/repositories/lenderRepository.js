@@ -29,6 +29,15 @@ class LenderRepository{
         return lender;
       }
 
+      async findByTradingName(tradingName){
+        const conn = await db.connectToPostgres();
+        const query = "SELECT * FROM lender WHERE trading_name = ?";
+  
+        const [lender] = await conn.query(query, [tradingName]);
+  
+        return lender;
+      }
+
     async create(lenderData){
       const conn = await db.connectToPostgres();
       

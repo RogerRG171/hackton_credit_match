@@ -18,6 +18,10 @@ class LenderService{
         return this.repository.findByEmail(email);
     }
 
+    async getLenderByTradingName(tradingName){
+        return this.repository.findByTrandingName(tradingName);
+    }
+
     async createLender(lender){
         return this.repository.create(lender);
     }
