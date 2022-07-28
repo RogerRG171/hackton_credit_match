@@ -44,7 +44,7 @@ class BorrowerRepository{
         borrowerData.complement, 
         borrowerData.neighborhood, 
         borrowerData.city, 
-        borrowerData.estate, 
+        borrowerData.estate 
         
     ]);
 
@@ -58,7 +58,7 @@ class BorrowerRepository{
         borrowerData.lastname, 
         borrowerData.birthdate, 
         borrowerData.phone_number,
-        address_id,
+        address_id
     ]);
 
       return borrower;

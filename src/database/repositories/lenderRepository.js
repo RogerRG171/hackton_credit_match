@@ -43,8 +43,7 @@ class LenderRepository{
         borrowerData.complement, 
         borrowerData.neighborhood, 
         borrowerData.city, 
-        borrowerData.estate, 
-        
+        borrowerData.estate        
     ]);
 
       const [lender] = await conn.query(query, [
@@ -54,7 +53,7 @@ class LenderRepository{
         lenderData.password, 
         lenderData.trading_name, 
         lenderData.phone_number,
-        address_id,
+        address_id
     ]);
 
       return lender;
@@ -62,7 +61,7 @@ class LenderRepository{
 
     async update(code, lenderData){
       const conn = await db.connectToPostgres();
-      const query = "UPDATE lender SET type = ?, tax_id = ?, email_address = ?, password = ?, serasa_score = ?, name = ?, lastname = ?, birthdate = ?, phone_number = ?, address_id = ? where id = ? ";
+      const query = "UPDATE lender SET type = ?, tax_id = ?, email_address = ?, password = ?, trading_name = ?, phone_number = ?, address_id = ? where id = ? ";
 
       const [lender] = await conn.query(query, [
         lenderData.type, 
