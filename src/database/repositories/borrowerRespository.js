@@ -15,18 +15,30 @@ class BorrowerRepository {
     const conn = await db.connectToPostgres();
     const query = "SELECT * FROM borrower where id = $1";
 
-    const [borrower] = await conn.query(query, [code]);
+     let borrower =  await conn.query(query, [code],  (err, results)=>{
+      if (err) {
+        throw err;
+      }
+      
+      return results.rows[0];
+    });
 
     return borrower;
+   
   }
 
   async findByEmail(email) {
+    
     const conn = await db.connectToPostgres();
     const query = "SELECT * FROM borrower where email_address = $1";
 
-    const [borrower] = await conn.query(query, [email]);
-
-    return borrower;
+    await conn.query(query, [email],  (err, results)=>{
+      if (err) {
+        throw err;
+      }
+      
+      return results.rows[0];
+    });
   }
 
   async create(borrowerData) {
@@ -65,7 +77,6 @@ class BorrowerRepository {
         borrowerData.address_id
       ], (err, results) => {
         if (err) {
-
           throw err;
         }
         return results.rows[0];

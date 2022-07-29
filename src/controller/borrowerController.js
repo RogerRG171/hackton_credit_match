@@ -11,7 +11,7 @@ exports.getById = async (req, res, next) => {
 };
 
 exports.getByEmail = async (req, res, next) => {
-    const payload = await new BorrowerService().getBorrowerByEmail(req.params.email);
+    const payload = await new BorrowerService().getBorrowerByEmail(req.query.email_address);
     res.status(200).send(payload);
 };
 

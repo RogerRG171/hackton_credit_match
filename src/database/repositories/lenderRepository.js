@@ -15,7 +15,13 @@ class LenderRepository {
     const conn = await db.connectToPostgres();
     const query = "SELECT * FROM lender WHERE id = $1";
 
-    const [lender] = await conn.query(query, [code]);
+    const lender = await conn.query(query, [code], (err, results) => {
+      if (err) {
+        throw err;
+      }
+
+      return results.rows[0];
+    });
 
     return lender;
   }
@@ -24,7 +30,12 @@ class LenderRepository {
     const conn = await db.connectToPostgres();
     const query = "SELECT * FROM lender WHERE email = $1";
 
-    const [lender] = await conn.query(query, [email]);
+    const lender = await conn.query(query, [email], (err, results) => {
+      if (err) {
+        throw err;
+      }
+      return results.rows[0];
+    });
 
     return lender;
   }
@@ -33,7 +44,13 @@ class LenderRepository {
     const conn = await db.connectToPostgres();
     const query = "SELECT * FROM lender WHERE trading_name = $1";
 
-    const [lender] = await conn.query(query, [tradingName]);
+    const lender = await conn.query(query, [tradingName], (err, results) => {
+      if (err) {
+        throw err;
+      }
+
+      return results.rows[0];
+    });
 
     return lender;
   }
@@ -45,7 +62,7 @@ class LenderRepository {
     const query2 = "INSERT INTO address ( street, build_number, postal_code, complement, neighborhood, city, estate) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id";
 
 
-    await conn.query(query2, [
+    const lender = await conn.query(query2, [
       borrowerData.street,
       borrowerData.build_number,
       borrowerData.postal_code,
@@ -60,7 +77,7 @@ class LenderRepository {
       }
       borrowerData.address_id = results.rows[0].id;
 
-       await conn.query(query, [
+      await conn.query(query, [
         lenderData.type,
         lenderData.tax_id,
         lenderData.email_address,
@@ -69,15 +86,17 @@ class LenderRepository {
         lenderData.phone_number,
         borrowerData.address_id
       ], (err, results) => {
-          if (err) {
+        if (err) {
 
-            throw err;
-          }
-          return results.rows[0];
+          throw err;
+        }
+        return results.rows[0];
       });
 
 
     });
+
+    return lender;
 
   }
 
@@ -85,7 +104,7 @@ class LenderRepository {
     const conn = await db.connectToPostgres();
     const query = "UPDATE lender SET type = $1, tax_id = $2, email_address = $3, password = $4, trading_name = $5, phone_number = $6, address_id = $7 where id = $8 ";
 
-    const [lender] = await conn.query(query, [
+    const lender = await conn.query(query, [
       lenderData.type,
       lenderData.tax_id,
       lenderData.email_address,
@@ -94,7 +113,12 @@ class LenderRepository {
       lenderData.phone_number,
       lenderData.address_id,
       code
-    ]);
+    ], (err, results) => {
+      if (err) {
+        throw err;
+      }
+      return results.rows[0];
+    });
 
     return lender;
   }

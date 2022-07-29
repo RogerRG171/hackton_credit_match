@@ -1,7 +1,7 @@
 const AssetService = require('../service/assetService');
 
 exports.get = async (req, res, next) => {
-    const payload = await new AssetService().getAllAssetsBycreditProfileId(req.params.credit_profile_id);
+    const payload = await new AssetService().getAssetsBycreditProfileId(req.params.credit_profile_id);
     res.status(200).send(payload);
 };
 

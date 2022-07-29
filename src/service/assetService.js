@@ -6,7 +6,7 @@ class AssetService{
         this.repository = new AssetRepository();
     }
 
-    async getAllAssetsBycreditProfileId(){
+    async getAssetsBycreditProfileId(code){
         return this.repository.findBycreditProfileId();
     }
 
@@ -30,8 +30,8 @@ class AssetService{
         return this.repository.create(asset, creditProfileId);
     }
 
-    async updateAsset(code, asset, creditProfileId){
-        return this.repository.update(code, asset, creditProfileId);
+    async updateAsset(code, asset){
+        return this.repository.update(code, asset);
     }
 
     async deleteAsset(code){
