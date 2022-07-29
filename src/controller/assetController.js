@@ -21,7 +21,7 @@ exports.getByTotalEstimateValue = async (req, res, next) => {
 };
 
 exports.getByMaxTotalEstimateValue = async (req, res, next) => {
-    const payload = await new AssetService().getAssetByTotalEstimateValue(req.params.total_estimate_value, req.params.credit_profile_id);
+    const payload = await new AssetService().getAssetByTotalEstimateValue(req.params.credit_profile_id);
     res.status(200).send(payload);
 };
 

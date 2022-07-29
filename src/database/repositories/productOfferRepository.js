@@ -13,7 +13,7 @@ class ProductOfferRepository{
 
     async findById(code){
       const conn = await db.connectToPostgres();
-      const query = "SELECT * FROM product_offer WHERE id = ?";
+      const query = "SELECT * FROM product_offer WHERE id = $1";
 
       const [productOffer] = await conn.query(query, [code]);
 
@@ -22,7 +22,7 @@ class ProductOfferRepository{
 
     async findByExpirationDate(expirationDate){
         const conn = await db.connectToPostgres();
-        const query = "SELECT * FROM product_offer WHERE expiration_date = ?";
+        const query = "SELECT * FROM product_offer WHERE expiration_date = $1";
   
         const [productOffer] = await conn.query(query, [expirationDate]);
   
@@ -31,7 +31,7 @@ class ProductOfferRepository{
 
     async findByMaxRate(maxRate){
         const conn = await db.connectToPostgres();
-        const query = "SELECT * FROM product_offer WHERE max_effective_interest_rate = ?";
+        const query = "SELECT * FROM product_offer WHERE max_effective_interest_rate = $1";
   
         const [productOffer] = await conn.query(query, [maxRate]);
   
@@ -40,7 +40,7 @@ class ProductOfferRepository{
 
     async findByAssetsAccepted(assetsAccepted){
         const conn = await db.connectToPostgres();
-        const query = "SELECT * FROM product_offer WHERE assets_accepted_as_collateral = ?";
+        const query = "SELECT * FROM product_offer WHERE assets_accepted_as_collateral = $1";
   
         const [productOffer] = await conn.query(query, [assetsAccepted]);
   
@@ -49,7 +49,7 @@ class ProductOfferRepository{
 
     async findByPaymentPlan(paymentPlan){
         const conn = await db.connectToPostgres();
-        const query = "SELECT * FROM product_offer WHERE payment_plan_options = ?";
+        const query = "SELECT * FROM product_offer WHERE payment_plan_options = $1";
   
         const [productOffer] = await conn.query(query, [paymentPlan]);
   
@@ -58,7 +58,7 @@ class ProductOfferRepository{
 
     async findByTermOptions(termOptions){
         const conn = await db.connectToPostgres();
-        const query = "SELECT * FROM product_offer WHERE term_options = ?";
+        const query = "SELECT * FROM product_offer WHERE term_options = $1";
   
         const [productOffer] = await conn.query(query, [termOptions]);
   
@@ -68,7 +68,7 @@ class ProductOfferRepository{
     
     async findByMinRiskScore(minRiskScore){
         const conn = await db.connectToPostgres();
-        const query = "SELECT * FROM product_offer WHERE min_risk_score = ?";
+        const query = "SELECT * FROM product_offer WHERE min_risk_score = $1";
   
         const [productOffer] = await conn.query(query, [minRiskScore]);
   
@@ -77,7 +77,7 @@ class ProductOfferRepository{
 
     async findByLenderId(lenderId){
         const conn = await db.connectToPostgres();
-        const query = "SELECT * FROM product_offer WHERE lender_id = ?";
+        const query = "SELECT * FROM product_offer WHERE lender_id = $1";
   
         const [productOffer] = await conn.query(query, [lenderId]);
   
@@ -87,7 +87,7 @@ class ProductOfferRepository{
     async create(productOfferData){
       const conn = await db.connectToPostgres();
       
-      const query = "INSERT INTO product_offer(expiration_date, credit_type, max_effective_interest_rate, assets_accepted_as_collateral, requires_collateral, min_risk_score, payment_plan_options, term_options, lender_id) VALUES(?,?,?,?,?,?,?,?,?)";
+      const query = "INSERT INTO product_offer(expiration_date, credit_type, max_effective_interest_rate, assets_accepted_as_collateral, requires_collateral, min_risk_score, payment_plan_options, term_options, lender_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)";
       
       const [productOffer] = await conn.query(query, [
         productOfferData.expiration_date, 
@@ -108,7 +108,7 @@ class ProductOfferRepository{
 
     async update(code, productOfferData){
       const conn = await db.connectToPostgres();
-      const query = "UPDATE product_offer SET expiration_date = ?, credit_type = ?, max_effective_interest_rate = ?, assets_accepted_as_collateral = ?, requires_collateral = ?, min_risk_score = ?, payment_plan_options = ?, term_options = ?, lender_id = ? WHERE id = ? ";
+      const query = "UPDATE product_offer SET expiration_date = $1, credit_type = $2, max_effective_interest_rate = $3, assets_accepted_as_collateral = $4, requires_collateral = $5, min_risk_score = $6, payment_plan_options = $7, term_options = $8, lender_id = $9 WHERE id = $10 ";
 
       const [productOffer] = await conn.query(query, [
         productOfferData.expiration_date, 
@@ -128,7 +128,7 @@ class ProductOfferRepository{
 
     async delete(code){
       const conn = await db.connectToPostgres();
-      const query = "DELETE FROM product_offer WHERE id = ?";
+      const query = "DELETE FROM product_offer WHERE id = $1";
 
        await conn.query(query, [code]);
       

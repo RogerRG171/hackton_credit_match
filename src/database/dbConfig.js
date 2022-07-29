@@ -1,4 +1,4 @@
-const pg = require('pg');
+const {pool, Pool} = require('pg');
 require("dotenv").config();
 
 const connectToPostgres = async () =>{
@@ -11,12 +11,13 @@ const connectToPostgres = async () =>{
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
+        database: process.env.DB_DATABASE,
+        port: 5432 
     }
 
    
 
-    const connection = await new pg.Connection(config);
+    const connection = await new Pool(config);
     console.log("Conexão realizada com sucesso!!!");
     global.connection = connection;
 }

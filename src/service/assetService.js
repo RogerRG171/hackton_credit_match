@@ -22,8 +22,8 @@ class AssetService{
         return this.repository.findByTotalEstimateValue(totalEstimateValue, creditProfileId);
     }
 
-    async getAssetByMaxTotalEstimateValue(totalEstimateValue, creditProfileId){
-        return this.repository.findByMaxTotalEstimateValue(totalEstimateValue, creditProfileId);
+    async getAssetByMaxTotalEstimateValue(creditProfileId){
+        return this.repository.findByMaxTotalEstimateValue(creditProfileId);
     }
 
     async createAsset(asset, creditProfileId){
