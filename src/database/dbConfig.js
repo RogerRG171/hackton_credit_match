@@ -17,7 +17,7 @@ const connectToPostgres = async () =>{
 
    
 
-    const connection = await new Pool(config);
+    const connection = await new Pool(process.env.DATABASE_URL);
     console.log("Conexão realizada com sucesso!!!");
     global.connection = connection;
 }
